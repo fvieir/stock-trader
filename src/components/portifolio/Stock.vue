@@ -5,7 +5,7 @@
           <strong>
             {{stock.name}}
             <small>
-              (Preço: {{stock.price}})
+              (Preço: {{ stock.price }} | Qtde: {{stock.quantity}})
             </small>
           </strong>
         </v-card-title>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 export default {
   props: ['stock'],
   data () {
@@ -35,13 +36,15 @@ export default {
     }
   },
   methods: {
+    ...mapActions({ sellStockActions: 'sellStock'}),
     sellStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stockPrice,
         quantity: this.quantity
       }
-      this.$store.dispatch('sellStock', order)
+      this.sellStockActions(order)
+      // this.$store.dispatch('sellStock', order)
       this.quantity = 0
     }
   }
