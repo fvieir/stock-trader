@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import stocks from './modules/stocks'
+// importar portifolio
+// registrar portifolio em modules
 
 Vue.use(Vuex)
 
