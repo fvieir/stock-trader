@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import stocks from './modules/stocks'
-// importar portifolio
-// registrar portifolio em modules
+import portifolio from './modules/portifolio'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-        stocks
+        stocks,
+        portifolio
     }
 })
