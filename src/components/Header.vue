@@ -23,13 +23,24 @@
             </v-list-tile>
           </v-list>
        </v-menu>
+       <v-spacer></v-spacer>
+       <v-layout align-center>
+         <small class="text-uppercase grey--text text--darken-2">
+           Saldo: {{funds}}
+          </small>
+       </v-layout>
    </v-toolbar-items>
  </v-toolbar>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
+  computed: {
+    ...mapGetters({
+      funds: 'funds'
+    })
+  }
 }
 </script>
 
