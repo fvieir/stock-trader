@@ -26,7 +26,7 @@
        <v-spacer></v-spacer>
        <v-layout align-center>
          <small class="text-uppercase grey--text text--darken-2">
-           Saldo: {{funds}}
+           Saldo: {{funds | money}}
           </small>
        </v-layout>
    </v-toolbar-items>

@@ -18,7 +18,7 @@
       <span class="headline">Clique em Finalizar Dia, para iniciar um novo dia! </span> 
     </v-alert>
 
-    <p class="mt-4 headline"><strong>Saldo: </strong>{{ funds }}</p>
+    <p class="mt-4 headline"><strong>Saldo: </strong>{{ funds | money}}</p>
 
   </div>
 </template>
