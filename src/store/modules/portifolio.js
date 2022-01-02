@@ -18,10 +18,10 @@ export default {
         },   
         sellStock (state, { stockId, quantity, stockPrice }) {
             const record = state.stocks.find(element => element.id === stockId)
-            if (record.quantity >= quantity) {
+            if (record.quantity > quantity) {
                 record.quantity -= quantity
             } else {
-                state.stocks.splice(state.stocks.indexOF(record), 1)
+                state.stocks.splice(state.stocks.indexOf(record), 1)
             }
             state.funds += quantity * stockPrice
         }

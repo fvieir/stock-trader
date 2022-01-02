@@ -15,11 +15,13 @@
           <v-text-field 
               label="Quantidade"
               type="number"
+              :error="insufficientQtde || !Number.isInteger(quantity)"
               v-model.number="quantity">
           </v-text-field>
           <v-btn class="blue darken-3 white--text"
               @click="sellStock()"
-              :disabled="quantity <=0 || !Number.isInteger(quantity)">Vender
+              :disabled="quantity <=0 || !Number.isInteger(quantity) || insufficientQtde ">
+              {{ insufficientQtde ? 'Qtde Insuficiente' : 'Vender'}}
           </v-btn>
       </v-container>
     </v-card>
@@ -33,6 +35,11 @@ export default {
   data () {
     return {
       quantity: 0
+    }
+  },
+  computed: {
+    insufficientQtde () {
+      return this.stock.quantity < this.quantity
     }
   },
   methods: {
