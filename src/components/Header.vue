@@ -16,10 +16,10 @@
         <v-btn flat slot="activator">Salvar & Carregar</v-btn>
           <v-list>
             <v-list-tile>
-              <v-list-tile-title>Salvar Dados</v-list-tile-title>
+              <v-list-tile-title @click="saveData" style="cursor: pointer;">Salvar Dados</v-list-tile-title>
             </v-list-tile>
             <v-list-tile>
-              <v-list-tile-title>Carregar Dados</v-list-tile-title>
+              <v-list-tile-title @click="loadData" style="cursor: pointer;">Carregar Dados</v-list-tile-title>
             </v-list-tile>
           </v-list>
        </v-menu>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
   computed: {
     ...mapGetters({
@@ -45,6 +45,18 @@ export default {
     ...mapActions(['randomizeStocks']),
     endDay () {
       this.randomizeStocks()
+    },
+    saveData () {
+      const { funds, stockPortifolio, getStocks} = this.$store.getters
+      this.$http.put('data.json', { funds, stockPortifolio, getStocks })
+    },
+    loadData () {
+      this.$http.get('data.json').then((result) => {
+        this.$store.state.funds = result.data.funds
+      }).catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error)
+      });
     }
   }
 }
