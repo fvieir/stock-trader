@@ -19,7 +19,7 @@
               <v-list-tile-title @click="saveData" style="cursor: pointer;">Salvar Dados</v-list-tile-title>
             </v-list-tile>
             <v-list-tile>
-              <v-list-tile-title @click="loadData" style="cursor: pointer;">Carregar Dados</v-list-tile-title>
+              <v-list-tile-title @click="loadDataLocal" style="cursor: pointer;">Carregar Dados</v-list-tile-title>
             </v-list-tile>
           </v-list>
        </v-menu>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations} from 'vuex'
+import { mapGetters, mapActions} from 'vuex'
 export default {
   computed: {
     ...mapGetters({
@@ -42,7 +42,7 @@ export default {
     })
   }, 
   methods: {
-    ...mapActions(['randomizeStocks']),
+    ...mapActions(['randomizeStocks','loadData']),
     endDay () {
       this.randomizeStocks()
     },
@@ -50,13 +50,8 @@ export default {
       const { funds, stockPortifolio, getStocks} = this.$store.getters
       this.$http.put('data.json', { funds, stockPortifolio, getStocks })
     },
-    loadData () {
-      this.$http.get('data.json').then((result) => {
-        this.$store.state.funds = result.data.funds
-      }).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error)
-      });
+    loadDataLocal () {
+      this.loadData()
     }
   }
 }
