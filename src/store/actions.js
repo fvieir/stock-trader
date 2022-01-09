@@ -5,8 +5,10 @@ export default {
         Vue.prototype.$http.get('data.json')
             .then(response => {
                 const data = response.data
+                // eslint-disable-next-line no-console
+                console.log(data)
                 if (data) {
-                    commit('setStocks', data.stocks)
+                    commit('setStocks', data.getStocks)
                     commit('setPortifolio', {
                         funds: data.funds,
                         stockPortifolio: data.stockPortifolio
