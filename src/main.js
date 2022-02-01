@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import router from './router'
 import store from './store/store'
-import filters from './filters'
+import './filters'
 
 import './plugins/vuetify'
 import './plugins/axios'
@@ -11,7 +11,6 @@ import './plugins/axios'
 Vue.config.productionTip = false
 
 new Vue({
-	filters,
 	store,
 	router,
 	render: h => h(App),
